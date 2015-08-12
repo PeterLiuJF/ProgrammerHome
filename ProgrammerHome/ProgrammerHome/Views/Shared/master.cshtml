@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        #main{
+            width:90%;
+            margin:0 auto;
+            background-color:#eaede4;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        @Html.Partial("header", null)
+        <div id="main_body">
+            @RenderBody()
+        </div>
+        @Html.Partial("footer", null)
+    </div>
+</body>
+</html>
