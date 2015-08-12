@@ -1,0 +1,5 @@
+D:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\obj\Debug\ToolLib.csprojResolveAssemblyReference.cache
+D:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\bin\Debug\ToolLib.dll
+D:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\bin\Debug\ToolLib.pdb
+D:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\obj\Debug\ToolLib.dll
+D:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\obj\Debug\ToolLib.pdb

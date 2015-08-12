@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FFE51E93-A386-44B1-BF28-3DF1E65E34EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToolLib</RootNamespace>
+    <AssemblyName>ToolLib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="data\CsvModel.cs" />
+    <Compile Include="data\DbfManager.cs" />
+    <Compile Include="data\DbfModel.cs" />
+    <Compile Include="data\DbKey.cs" />
+    <Compile Include="data\DbModel.cs" />
+    <Compile Include="data\DbTypes.cs" />
+    <Compile Include="data\OdbcModel.cs" />
+    <Compile Include="data\OracleModel.cs" />
+    <Compile Include="data\SqlDrcModel.cs" />
+    <Compile Include="data\SqlMacroModel.cs" />
+    <Compile Include="data\SqlModel.cs" />
+    <Compile Include="data\SqlTransModel.cs" />
+    <Compile Include="data\SqlTysjModel.cs" />
+    <Compile Include="data\SqlVsatModel.cs" />
+    <Compile Include="DbAccess\OleDbAccess.cs" />
+    <Compile Include="DbAccess\OracleAccess.cs" />
+    <Compile Include="DbAccess\SqlAccess.cs" />
+    <Compile Include="Enum\DbTypeEnum.cs" />
+    <Compile Include="Enum\SearchTypeEnum.cs" />
+    <Compile Include="exception\DAOException.cs" />
+    <Compile Include="exception\DatabaseException.cs" />
+    <Compile Include="exception\ObjectExist.cs" />
+    <Compile Include="exception\ObjectNotExistException.cs" />
+    <Compile Include="log\Log.cs" />
+    <Compile Include="log\LogLevel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util\CacheUtil.cs" />
+    <Compile Include="util\ConvertUtil.cs" />
+    <Compile Include="util\EncryptUtil.cs" />
+    <Compile Include="util\ExportUtil.cs" />
+    <Compile Include="util\FileUtil.cs" />
+    <Compile Include="util\FormatUtil.cs" />
+    <Compile Include="util\FtpUtil.cs" />
+    <Compile Include="util\ImageUtil.cs" />
+    <Compile Include="util\LogUtil.cs" />
+    <Compile Include="util\MailUtil.cs" />
+    <Compile Include="util\Normal.cs" />
+    <Compile Include="util\PageUtil.cs" />
+    <Compile Include="util\PageXmlUtil.cs" />
+    <Compile Include="util\PassUtil.cs" />
+    <Compile Include="util\PropUtil.cs" />
+    <Compile Include="util\PwdUtil.cs" />
+    <Compile Include="util\TreeUtil.cs" />
+    <Compile Include="util\XmlFile.cs" />
+    <Compile Include="util\XmlUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\SqlModel.cs.bak" />
+    <None Include="data\vssver.scc" />
+    <None Include="exception\vssver.scc" />
+    <None Include="log\vssver.scc" />
+    <None Include="util\vssver.scc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
