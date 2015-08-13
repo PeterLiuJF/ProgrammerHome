@@ -137,6 +137,37 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\admin.css" />
+    <Content Include="assets\css\amazeui.css" />
+    <Content Include="assets\css\amazeui.flat.css" />
+    <Content Include="assets\css\amazeui.flat.min.css" />
+    <Content Include="assets\css\amazeui.min.css" />
+    <Content Include="assets\css\app.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\i\app-icon72x72%402x.png" />
+    <Content Include="assets\i\examples\admin-chrome.png" />
+    <Content Include="assets\i\examples\admin-firefox.png" />
+    <Content Include="assets\i\examples\admin-ie.png" />
+    <Content Include="assets\i\examples\admin-opera.png" />
+    <Content Include="assets\i\examples\admin-safari.png" />
+    <Content Include="assets\i\examples\adminPage.png" />
+    <Content Include="assets\i\examples\blogPage.png" />
+    <Content Include="assets\i\examples\landing.png" />
+    <Content Include="assets\i\examples\landingPage.png" />
+    <Content Include="assets\i\examples\loginPage.png" />
+    <Content Include="assets\i\examples\sidebarPage.png" />
+    <Content Include="assets\i\favicon.png" />
+    <Content Include="assets\i\startup-640x1096.png" />
+    <Content Include="assets\js\amazeui.ie8polyfill.js" />
+    <Content Include="assets\js\amazeui.ie8polyfill.min.js" />
+    <Content Include="assets\js\amazeui.js" />
+    <Content Include="assets\js\amazeui.min.js" />
+    <Content Include="assets\js\amazeui.widgets.helper.js" />
+    <Content Include="assets\js\amazeui.widgets.helper.min.js" />
+    <Content Include="assets\js\app.js" />
+    <Content Include="assets\js\handlebars.min.js" />
+    <Content Include="assets\js\jquery.min.js" />
+    <Content Include="Content\common.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -193,6 +224,11 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -224,6 +260,7 @@
     <Content Include="Views\Shared\footer.cshtml" />
     <Content Include="Views\Shared\master.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

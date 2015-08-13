@@ -3,10 +3,20 @@
     Layout = "~/Views/Shared/master.cshtml";
 }
 <style>
+    #dateBox {
+        height: 500px;
+        width: 98%;
+    }
 
+    .body_left {
+        border: 1px solid black;
+        width: 30%;
+        margin-top: 90px;
+    }
 </style>
 <div class="body_left">
-
+    <div id="dateBox">
+    </div>
 </div>
 <div class="body_center">
 
@@ -14,3 +24,15 @@
 <div class="body_right">
 
 </div>
+<script>
+    $(document).ready(function () {
+        ShowDate();
+
+    });
+
+    function ShowDate() {
+        $('#dateBox').fullCalendar();
+        //$('#dateBox').datepicker({ format: 'yyyy-mm-dd', autoClose: false});
+        //$('#dateBox').datepicker('open');
+    }
+</script>

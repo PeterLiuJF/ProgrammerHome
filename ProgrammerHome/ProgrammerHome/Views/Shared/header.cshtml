@@ -4,29 +4,46 @@
         height:200px;
         border:1px solid black;
     }
-    #main_header li{
-        float:left;
-        margin:2px 20px;
-        height:30px;
-        list-style-type:none;
-    }
-    #main_header .header_img{
-        width:100%;
-        height:150px;
-        border:1px solid black;
-    }
-    #main_header .header_user_info{
-        width:100px;
-        height:100px;
-    }
 </style>
 <div id="main_header">
-    <div class="header_img"><div class="header_user_info">peter</div></div>
-    <ul>
-        <li>首页</li>
-        <li>个人中心</li>
-        <li>图书馆</li>
-        <li>娱乐</li>
-        <li>联系</li>
-    </ul>
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="#left-link" class="">
+                <span class="am-header-nav-title">首页</span>
+                <i class="am-header-icon am-icon-home"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">Amaze UI</h1>
+    </header>
+    <nav data-am-widget="menu" class="am-menu  am-menu-slide1" data-am-menu-collapse>
+        <a href="javascript: void(0)" class="am-menu-toggle">
+            <i class="am-menu-toggle-icon am-icon-bars"></i>
+        </a>
+        <ul class="am-menu-nav am-avg-sm-4 am-collapse">
+            <li class="am-parent">
+                <a href="##" class="">个人中心</a>
+                <ul class="am-menu-sub am-collapse  am-avg-sm-2 ">
+                    <li class="">
+                        <a href="##" class="">个人信息</a>
+                    </li>
+                    <li class="">
+                        <a href="##" class="">修改个人资料</a>
+                    </li>
+                    <li class="am-menu-nav-channel">
+                        <a href="##" class="" title="公司">进入栏目 &raquo;</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="##" class="">图书馆</a>
+            </li>
+            <li class="">
+                <a href="##" class="">娱乐</a>
+            </li>
+            <li class="">
+                <a href="##" class="">联系</a>
+            </li>
+        </ul>
+    </nav>
 </div>
+
