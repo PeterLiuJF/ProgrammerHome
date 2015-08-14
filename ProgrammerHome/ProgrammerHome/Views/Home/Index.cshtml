@@ -4,22 +4,50 @@
 }
 <style>
     #dateBox {
-        height: 500px;
+        height: auto;
         width: 98%;
     }
 
     .body_left {
-        border: 1px solid black;
+        float:left;
         width: 30%;
-        margin-top: 90px;
+    }
+    .body_center{
+        float:left;
+    }
+    .body_center .center_image{
+        width:500px;
+        height:450px;
     }
 </style>
 <div class="body_left">
     <div id="dateBox">
+        @Html.Partial("Calendar",null)
     </div>
 </div>
 <div class="body_center">
+    <div class="center_image">
+        <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}'>
+            <ul class="am-slides">
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
 
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
+
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg">
+
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg">
+
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 <div class="body_right">
 
