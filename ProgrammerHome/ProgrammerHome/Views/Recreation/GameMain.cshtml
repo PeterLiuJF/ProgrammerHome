@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProgrammerHome.GameTypeModel>
+
+@{
+    ViewBag.Title = "GameMain";
+    Layout = "~/Views/Shared/master.cshtml";
+}
+@*http://amazeui.org/getting-started*@
+<style>
+    #game_list {
+        width: 50%;
+    }
+</style>
+<div id="game_list">
+    <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+        @foreach (var item in Model) {
+        <dl class="am-accordion-item">
+            <dt class="am-accordion-title">
+                @item.TypeName
+            </dt>
+            <dd class="am-accordion-bd am-collapse">
+                <div class="am-accordion-content">
+                    @foreach (var gameItem in item.Games)
+                    {
+                        <a href="javascript:void(0)">@gameItem.Name</a>
+                    }
+                </div>
+            </dd>
+        </dl>
+        }
+    </section>
+</div>

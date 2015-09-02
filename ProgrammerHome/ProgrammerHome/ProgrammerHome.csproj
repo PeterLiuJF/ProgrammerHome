@@ -131,9 +131,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LibraryController.cs" />
+    <Compile Include="Controllers\RecreationController.cs" />
+    <Compile Include="DataBaseService\RecreationService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GameModel.cs" />
+    <Compile Include="Models\MusicModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +173,35 @@
     <Content Include="assets\js\handlebars.min.js" />
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="Content\common.css" />
+    <Content Include="Content\recreation\dist\add-on\jplayer.playlist.js" />
+    <Content Include="Content\recreation\dist\add-on\jplayer.playlist.min.js" />
+    <Content Include="Content\recreation\dist\add-on\jquery.jplayer.inspector.js" />
+    <Content Include="Content\recreation\dist\add-on\jquery.jplayer.inspector.min.js" />
+    <Content Include="Content\recreation\dist\jplayer\jquery.jplayer.js" />
+    <Content Include="Content\recreation\dist\jplayer\jquery.jplayer.min.js" />
+    <Content Include="Content\recreation\dist\jplayer\jquery.jplayer.swf" />
+    <Content Include="Content\recreation\dist\popcorn\popcorn.jplayer.js" />
+    <Content Include="Content\recreation\dist\popcorn\popcorn.jplayer.min.js" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\css\jplayer.blue.monday.css" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\css\jplayer.blue.monday.min.css" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\image\jplayer.blue.monday.jpg" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\image\jplayer.blue.monday.seeking.gif" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\image\jplayer.blue.monday.video.play.png" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\mustache\jplayer.blue.monday.audio.playlist.html" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\mustache\jplayer.blue.monday.audio.single.html" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\mustache\jplayer.blue.monday.audio.stream.html" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\mustache\jplayer.blue.monday.video.playlist.html" />
+    <Content Include="Content\recreation\dist\skin\blue.monday\mustache\jplayer.blue.monday.video.single.html" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\css\jplayer.pink.flag.css" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\css\jplayer.pink.flag.min.css" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\image\jplayer.pink.flag.jpg" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\image\jplayer.pink.flag.seeking.gif" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\image\jplayer.pink.flag.video.play.png" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\mustache\jplayer.pink.flag.audio.playlist.html" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\mustache\jplayer.pink.flag.audio.single.html" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\mustache\jplayer.pink.flag.audio.stream.html" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\mustache\jplayer.pink.flag.video.playlist.html" />
+    <Content Include="Content\recreation\dist\skin\pink.flag\mustache\jplayer.pink.flag.video.single.html" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -222,6 +256,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="DataBase\MYHOME.mdf" />
+    <Content Include="DataBase\MYHOME_log.ldf">
+      <DependentUpon>MYHOME.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="assets\fonts\fontawesome-webfont.eot" />
@@ -230,6 +268,8 @@
     <Content Include="assets\fonts\fontawesome-webfont.woff2" />
     <Content Include="assets\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Music\念白-自由人.mp3" />
+    <Content Include="Music\蓝幻-千秋月别西楚将.mp3" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -261,10 +301,14 @@
     <Content Include="Views\Shared\master.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Calendar.cshtml" />
+    <Content Include="Views\Library\Library.cshtml" />
+    <Content Include="Views\Recreation\RecreationMain.cshtml" />
+    <Content Include="Views\Recreation\GameMain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="images\" />
+    <Folder Include="Scripts\recreation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
