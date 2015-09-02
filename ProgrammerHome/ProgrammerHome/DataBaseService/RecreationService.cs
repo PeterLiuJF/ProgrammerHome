@@ -20,7 +20,7 @@ namespace ProgrammerHome.DataBaseService
             {
                 list.Add(new MusicModel()
                 {
-                    title = Normal.ListStr(Normal.ListStr(dt.Rows[i]["Title"])),
+                    title = Normal.ListStr(dt.Rows[i]["Title"]),
                     artist = Normal.ListStr(dt.Rows[i]["Artist"]),
                     mp3 = Normal.ListStr(dt.Rows[i]["FileInfo"]),
                     //oga = Normal.ListStr(dt.Rows[i][""]),
@@ -40,7 +40,7 @@ namespace ProgrammerHome.DataBaseService
             {
                 list.Add(new GameModel()
                 {
-                    ID = Normal.ParseInt(Normal.ListStr(dt.Rows[i]["ID"])),
+                    ID = Normal.ParseInt(dt.Rows[i]["ID"]),
                     Name = Normal.ListStr(dt.Rows[i]["Name"])
                 });
             }
@@ -49,7 +49,9 @@ namespace ProgrammerHome.DataBaseService
 
         public List<GameTypeModel> GetGameTypeItems()
         {
-            string sql = "select r.*,GameID=g.id,g.name,g.filepath,g.filesize from RecreationType r left join Game g on g.typeid=r.id where maintype='单机游戏'";
+
+            string sql = @"select r.*,GameID=g.id,g.name,g.filepath,g.filesize,g.ImageFilePath,g.Detail 
+from RecreationType r left join Game g on g.typeid=r.id where maintype='单机游戏'";
             List<GameTypeModel> list = new List<GameTypeModel>();
             DataTable dt = new DataTable();
             SqlAccess.QueryDt(dt, sql);
@@ -58,13 +60,13 @@ namespace ProgrammerHome.DataBaseService
                 GameTypeModel typeModel = null;
                 var typeName = Normal.ListStr(dt.Rows[i]["TypeName"]);
                 var mainType = Normal.ListStr(dt.Rows[i]["MainType"]);
-                var gameid = Normal.ParseInt(Normal.ListStr(dt.Rows[i]["GameID"]));
+                var gameid = Normal.ParseInt(dt.Rows[i]["GameID"]);
                 typeModel = list.SingleOrDefault(t => t.TypeName == typeName && t.MainType == mainType);
                 if (typeModel == null)
                 {
                     typeModel = new GameTypeModel()
                     {
-                        ID = Normal.ParseInt(Normal.ListStr(dt.Rows[i]["ID"])),
+                        ID = Normal.ParseInt(dt.Rows[i]["ID"]),
                         MainType = mainType,
                         TypeName = typeName
                     };
@@ -76,6 +78,8 @@ namespace ProgrammerHome.DataBaseService
                             Name = Normal.ListStr(dt.Rows[i]["Name"]),
                             FilePath = Normal.ListStr(dt.Rows[i]["FilePath"]),
                             FileSize = Normal.ListStr(dt.Rows[i]["FileSize"]),
+                            ImageFilePath = Normal.ListStr(dt.Rows[i]["ImageFilePath"]),
+                            Detail = Normal.ListStr(dt.Rows[i]["Detail"])
                         });
                     list.Add(typeModel);
                 }
@@ -84,14 +88,18 @@ namespace ProgrammerHome.DataBaseService
                     if (gameid != 0)
                         typeModel.Games.Add(new GameModel()
                         {
-                            ID = Normal.ParseInt(Normal.ListStr(dt.Rows[i]["GameID"])),
+                            ID = Normal.ParseInt(dt.Rows[i]["GameID"]),
                             Name = Normal.ListStr(dt.Rows[i]["Name"]),
                             FilePath = Normal.ListStr(dt.Rows[i]["FilePath"]),
                             FileSize = Normal.ListStr(dt.Rows[i]["FileSize"]),
+                            ImageFilePath = Normal.ListStr(dt.Rows[i]["ImageFilePath"]),
+                            Detail = Normal.ListStr(dt.Rows[i]["Detail"])
                         });
+
                 }
             }
             return list;
         }
+
     }
 }

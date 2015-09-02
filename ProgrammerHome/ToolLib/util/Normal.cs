@@ -1,5 +1,9 @@
 using System;
 using System.Text;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
+using System.IO;
+
 namespace ToolLib.util
 {
 	/// <summary>
@@ -100,6 +104,20 @@ namespace ToolLib.util
             return GetMessage(msg, "error");
         }
 
-        
+
+        public static string GetJson<T>(T obj)
+        {
+            //记住 添加引用 System.ServiceModel.Web 
+            /**
+             * 如果不添加上面的引用,System.Runtime.Serialization.Json; Json是出不来的哦
+             * */
+            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(T));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                json.WriteObject(ms, obj);
+                string szJson = Encoding.UTF8.GetString(ms.ToArray());
+                return szJson;
+            }
+        }
     }
 }

@@ -7,25 +7,66 @@
 @*http://amazeui.org/getting-started*@
 <style>
     #game_list {
-        width: 50%;
+        width: 48%;
+        float: left;
+    }
+
+    #game_detail {
+        width: 48%;
+        float: right;
+    }
+
+    .gameButton {
+        margin: 2px 5px;
     }
 </style>
 <div id="game_list">
-    <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
-        @foreach (var item in Model) {
-        <dl class="am-accordion-item">
-            <dt class="am-accordion-title">
-                @item.TypeName
-            </dt>
-            <dd class="am-accordion-bd am-collapse">
-                <div class="am-accordion-content">
-                    @foreach (var gameItem in item.Games)
-                    {
-                        <a href="javascript:void(0)">@gameItem.Name</a>
-                    }
-                </div>
-            </dd>
-        </dl>
+    <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{ "multiple": true }'>
+        @foreach (var item in Model)
+        {
+            <dl class="am-accordion-item">
+                <dt class="am-accordion-title">
+                    @item.TypeName
+                </dt>
+                <dd class="am-accordion-bd am-collapse">
+                    <div class="am-accordion-content">
+                        @foreach (var gameItem in item.Games)
+                        {
+                            var temp = ToolLib.util.Normal.GetJson<ProgrammerHome.GameModel>(gameItem);
+                            <a href="javascript:void(0)" class="gameButton"
+                               onclick="var model = eval(@temp); ShowGameDetail(model)">@gameItem.Name</a>
+                        }
+                    </div>
+                </dd>
+            </dl>
         }
     </section>
 </div>
+<div id="game_detail">
+    <div data-am-widget="intro" class="am-intro am-cf am-intro-default">
+        <div class="am-intro-hd">
+            <h2 class="am-intro-title">你好小娜</h2>
+        </div>
+
+        <div class="am-g am-intro-bd">
+            <div class="am-intro-left am-u-sm-5"><img src="http://s.amazeui.org/assets/2.x/i/cpts/intro/WP_Cortana_China.png" alt="小娜" /></div>
+            <div class="am-intro-right am-u-sm-7"></div>
+        </div>
+        <div class="am-intro-more-bottom">
+            <a class="am-btn am-btn-default "
+               href="#more">更多细节</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+    })
+
+    function ShowGameDetail(model) {
+        $("#game_detail .am-intro-title").html(model.Name);
+        $("#game_detail .am-intro-left").html("<img src='"+model.ImageFilePath+"'/>");
+        $("#game_detail .am-intro-right").html("<p>"+model.FilePath+"</p><p>"+model.Detail+"</p>");
+    }
+</script>

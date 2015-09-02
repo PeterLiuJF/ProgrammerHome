@@ -11,6 +11,8 @@ namespace ProgrammerHome
         public string Name;
         public string FilePath;
         public string FileSize;
+        public string ImageFilePath;
+        public string Detail;
     }
 
     public class GameTypeModel

@@ -133,11 +133,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\RecreationController.cs" />
+    <Compile Include="DataBaseService\LibraryService.cs" />
     <Compile Include="DataBaseService\RecreationService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GameModel.cs" />
+    <Compile Include="Models\LibraryModel.cs" />
     <Compile Include="Models\MusicModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
