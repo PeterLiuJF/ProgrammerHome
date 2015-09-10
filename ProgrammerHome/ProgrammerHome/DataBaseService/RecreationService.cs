@@ -10,24 +10,60 @@ namespace ProgrammerHome.DataBaseService
 {
     public class RecreationService
     {
-        public List<MusicModel> GetMusicItems()
+        public List<PlayDetailModel> GetMusicItems(int type)
         {
-            string sql = "select * from music";
-            List<MusicModel> list = new List<MusicModel>();
+            string sql = string.Format("select * from PlayList where type={0}",type);
+            List<PlayDetailModel> list = new List<PlayDetailModel>();
             DataTable dt = new DataTable();
             SqlAccess.QueryDt(dt, sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                list.Add(new MusicModel()
+                list.Add(new PlayDetailModel()
                 {
                     title = Normal.ListStr(dt.Rows[i]["Title"]),
                     artist = Normal.ListStr(dt.Rows[i]["Artist"]),
                     mp3 = Normal.ListStr(dt.Rows[i]["FileInfo"]),
-                    //oga = Normal.ListStr(dt.Rows[i][""]),
                     poster = Normal.ListStr(dt.Rows[i]["ImageINfo"])
                 });
             }
             return list;
+        }
+
+        public PlayListModel GetPlayListItems()
+        {
+            string sql = "select * from PlayList";
+            PlayListModel model = new PlayListModel();
+            DataTable dt = new DataTable();
+            SqlAccess.QueryDt(dt, sql);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                var type = Normal.ParseInt(dt.Rows[i]["Type"]);
+                if (type == 2)
+                {
+                    model.MovieList.Add(new PlayDetailModel()
+                    {
+                        title = Normal.ListStr(dt.Rows[i]["Title"]),
+                        artist = Normal.ListStr(dt.Rows[i]["Artist"]),
+                        mp3 = Normal.ListStr(dt.Rows[i]["FileInfo"]),
+                        poster = Normal.ListStr(dt.Rows[i]["ImageINfo"]),
+                        ID = Normal.ParseInt(dt.Rows[i]["ID"]),
+
+                    });
+                }
+                else
+                {
+                    model.MusicList.Add(new PlayDetailModel()
+                    {
+                        title = Normal.ListStr(dt.Rows[i]["Title"]),
+                        artist = Normal.ListStr(dt.Rows[i]["Artist"]),
+                        mp3 = Normal.ListStr(dt.Rows[i]["FileInfo"]),
+                        poster = Normal.ListStr(dt.Rows[i]["ImageINfo"]),
+                        ID = Normal.ParseInt(dt.Rows[i]["ID"]),
+
+                    });
+                }
+            }
+            return model;
         }
 
         public List<GameModel> GetGameItems()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProgrammerHome.DataBaseService;
+using ToolLib.util;
 
 namespace ProgrammerHome.Controllers
 {
@@ -16,13 +17,14 @@ namespace ProgrammerHome.Controllers
         #region Music
         public ActionResult RecreationMain()
         {
-            return View();
+            var model = reService.GetPlayListItems();
+            return View(model);
         }
 
         [HttpPost]
-        public JsonResult LoadMusic()
+        public JsonResult LoadMusic(string type)
         {
-            return Json(reService.GetMusicItems());
+            return Json(reService.GetMusicItems(Normal.ParseInt(type)));
         }
         #endregion
 

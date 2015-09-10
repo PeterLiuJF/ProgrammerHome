@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProgrammerHome.DataBaseService;
+using ToolLib.util;
 
 namespace ProgrammerHome.Controllers
 {
@@ -15,9 +16,15 @@ namespace ProgrammerHome.Controllers
 
         public ActionResult Library()
         {
-            var list = libService.GetGameTypeItems();
+            var list = libService.GetGameTypeItems(1);
             return View(list);
         }
 
+        [HttpPost]
+        public ActionResult Library2(string parentLevel)
+        {
+            var list = libService.GetGameTypeItems(2, Normal.ParseInt(parentLevel));
+            return Json(list);
+        }
     }
 }

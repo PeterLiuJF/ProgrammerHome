@@ -12,7 +12,8 @@ namespace ProgrammerHome
     public class LibraryTypeModel
     {
         public int ID;
-        public int ParantID;
+        public int Level;
+        public int ParentLevel;
         public string Name;
     }
 }
