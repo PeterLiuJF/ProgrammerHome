@@ -18,5 +18,15 @@ namespace ProgrammerHome.Controllers
             return View(personService.GetUserInfo(1));
         }
 
+        public ActionResult UserRegistered()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegisterUser()
+        {
+            return Content("");
+        }
     }
 }

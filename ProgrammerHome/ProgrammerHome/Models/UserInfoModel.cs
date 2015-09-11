@@ -37,6 +37,8 @@ namespace ProgrammerHome
         public int WorkingConditions { get; set; }
         [Display(Name = "兴趣")]
         public string InterestIn { get; set; }
+        [Display(Name = "邮箱")]
+        public string Email { get; set; }
         [Display(Name = "QQ")]
         public string QQ { get; set; }
         [Display(Name = "自我介绍")]

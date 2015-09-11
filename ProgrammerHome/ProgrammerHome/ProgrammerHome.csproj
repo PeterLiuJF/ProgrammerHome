@@ -313,6 +313,7 @@
     <Content Include="Views\Recreation\RecreationMain.cshtml" />
     <Content Include="Views\Recreation\GameMain.cshtml" />
     <Content Include="Views\Person\ShowInfo.cshtml" />
+    <Content Include="Views\Person\UserRegistered.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

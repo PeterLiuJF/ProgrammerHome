@@ -1,0 +1,91 @@
+﻿@model ProgrammerHome.UserInfoModel
+
+@{
+    ViewBag.Title = "UserRegistered";
+    Layout = "~/Views/Shared/master.cshtml";
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using (Ajax.BeginForm("RegisterUser", "Person", new AjaxOptions { }, new { @class = "am-form",
+    @id = "doc-vld-msg" }))
+{
+<fieldset>
+    <legend>JS 表单验证</legend>
+    <div class="am-form-group">
+        @Html.LabelFor(model => model.Account)：
+        @Html.TextBoxFor(model => model.Account, new { @minlength = "3",
+       @placeholder = "输入用户名（至少 3 个字符）",@required="required"})
+    </div>
+    
+    <div class="am-form-group">
+        @Html.LabelFor(model => model.Password)：
+        @Html.TextBoxFor(model => model.Password, new { @placeholder = "把密码交出来！",
+       @required = "required", @type = "password", @minlength = 6, @maxlength = 12 })
+    </div>
+    <div class="am-form-group">
+        <label for="password2">确认密码：</label>
+        <input type="password" id="password2" placeholder="请与上面输入的值一致" data-equal-to="password" required />
+    </div>
+    <div class="am-form-group">
+        @Html.LabelFor(model => model.Email)：
+        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱", 
+       @required = "required" })
+    </div>
+
+    <div class="am-form-group">
+        @Html.LabelFor(model => model.Email)：
+        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱",
+       @required = "required" })
+    </div>
+
+    <div class="am-form-group">
+        @Html.LabelFor(model => model.Email)：
+        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱", 
+       @required = "required" })
+    </div>
+
+    <div class="am-form-group">
+        @Html.LabelFor(model => model.Sex)：
+        <label class="am-radio-inline">
+            @Html.RadioButtonFor(model => model.Sex, new { @required = "required" }) 男
+        </label>
+        <label class="am-radio-inline">
+            @Html.RadioButtonFor(model => model.Sex, new { @required = "required" }) 女
+        </label>
+        <label class="am-radio-inline">
+            @Html.RadioButtonFor(model => model.Sex, new { @required = "required" }) 其他
+        </label>
+    </div>
+    <div class="am-form-group">
+        @Html.LabelFor(model => model.Email)：
+        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱", @required = "required" })
+    </div>
+
+    <button class="am-btn am-btn-secondary" type="submit">提交</button>
+</fieldset>
+}
+<script>
+    $(function () {
+        $('#doc-vld-msg').validator({
+            onValid: function (validity) {
+                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+            },
+
+            onInValid: function (validity) {
+                var $field = $(validity.field);
+                var $group = $field.closest('.am-form-group');
+                var $alert = $group.find('.am-alert');
+                // 使用自定义的提示信息 或 插件内置的提示信息
+                var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+
+                if (!$alert.length) {
+                    $alert = $('<div class="am-alert am-alert-danger"></div>').hide().
+                      appendTo($group);
+                }
+
+                $alert.html(msg).show();
+            }
+        });
+    });
+  </script>

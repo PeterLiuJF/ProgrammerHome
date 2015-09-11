@@ -28,6 +28,7 @@ namespace ProgrammerHome.Service
                 IntroduceMyself = Normal.ListStr(dt.Rows[0]["IntroduceMyself"]),
                 Marriage = Normal.ListStr(dt.Rows[0]["Marriage"]),
                 Position = Normal.ListStr(dt.Rows[0]["Position"]),
+                Email = Normal.ListStr(dt.Rows[0]["Email"]),
                 QQ = Normal.ListStr(dt.Rows[0]["QQ"]),
                 WorkingConditions = Normal.ParseInt(dt.Rows[0]["WorkingConditions"]),
                 EntryDate = Normal.ListStr(dt.Rows[0]["EntryDate"])
