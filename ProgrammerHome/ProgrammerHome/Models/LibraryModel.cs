@@ -11,9 +11,9 @@ namespace ProgrammerHome
 
     public class LibraryTypeModel
     {
-        public int ID;
-        public int Level;
-        public int ParentLevel;
-        public string Name;
+        public int ID{ get; set; }
+        public int Level{ get; set; }
+        public int ParentLevel{ get; set; }
+        public string Name{ get; set; }
     }
 }

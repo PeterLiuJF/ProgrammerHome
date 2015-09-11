@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using ToolLib.DbAccess;
 using ToolLib.util;
+using System.Data;
 
-namespace ProgrammerHome.DataBaseService
+namespace ProgrammerHome.Service
 {
     public class RecreationService
     {
         public List<PlayDetailModel> GetMusicItems(int type)
         {
-            string sql = string.Format("select * from PlayList where type={0}",type);
+            string sql = string.Format("select * from PlayList where type={0}", type);
             List<PlayDetailModel> list = new List<PlayDetailModel>();
             DataTable dt = new DataTable();
             SqlAccess.QueryDt(dt, sql);
@@ -136,6 +136,5 @@ from RecreationType r left join Game g on g.typeid=r.id where maintype='单机�
             }
             return list;
         }
-
     }
 }

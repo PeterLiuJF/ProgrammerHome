@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -132,16 +134,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\RecreationController.cs" />
-    <Compile Include="DataBaseService\LibraryService.cs" />
-    <Compile Include="DataBaseService\RecreationService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\LibraryModel.cs" />
     <Compile Include="Models\PlayListModel.cs" />
+    <Compile Include="Models\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\LibraryService.cs" />
+    <Compile Include="Service\PersonService.cs" />
+    <Compile Include="Service\RecreationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\admin.css" />
@@ -307,6 +312,7 @@
     <Content Include="Views\Library\Library.cshtml" />
     <Content Include="Views\Recreation\RecreationMain.cshtml" />
     <Content Include="Views\Recreation\GameMain.cshtml" />
+    <Content Include="Views\Person\ShowInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,6 +326,9 @@
       <Project>{ffe51e93-a386-44b1-bf28-3df1e65e34ea}</Project>
       <Name>ToolLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

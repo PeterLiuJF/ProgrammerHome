@@ -3,6 +3,11 @@
         width:100%;
         height:auto;
     }
+    #main_header .login_show_box{
+        float:right;
+        margin-top:-40px;
+        margin-right:20px;
+    }
 </style>
 <div id="main_header">
     <header data-am-widget="header" class="am-header am-header-default">
@@ -12,7 +17,7 @@
                 <i class="am-header-icon am-icon-home"></i>
             </a>
         </div>
-        <h1 class="am-header-title">个人空间</h1>
+        <h1 class="am-header-title">个人空间</h1>      
     </header>
     <nav data-am-widget="menu" class="am-menu  am-menu-slide1" data-am-menu-collapse>
         <a href="javascript: void(0)" class="am-menu-toggle">
@@ -23,7 +28,7 @@
                 <a href="##" class="">个人中心</a>
                 <ul class="am-menu-sub am-collapse  am-avg-sm-2 ">
                     <li class="">
-                        <a href="##" class="">个人信息</a>
+                        <a href="../Person/ShowInfo" class="">个人信息</a>
                     </li>
                     <li class="">
                         <a href="##" class="">修改个人资料</a>
@@ -51,6 +56,8 @@
                 <a href="##" class="">联系</a>
             </li>
         </ul>
+        <div class="login_show_box"><a href="javascript:void(0);">登录</a> 
+        &nbsp;&nbsp;· &nbsp;&nbsp;<a href="javascript:void(0);">注销</a></div>
     </nav>
 </div>
 

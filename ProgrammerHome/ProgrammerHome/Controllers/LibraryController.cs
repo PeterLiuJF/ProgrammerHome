@@ -1,9 +1,9 @@
-﻿using System;
+﻿using ProgrammerHome.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ProgrammerHome.DataBaseService;
 using ToolLib.util;
 
 namespace ProgrammerHome.Controllers
@@ -16,7 +16,7 @@ namespace ProgrammerHome.Controllers
 
         public ActionResult Library()
         {
-            var list = libService.GetGameTypeItems(1);
+            var list = libService.GetGameTypeItems(1,0);
             return View(list);
         }
 

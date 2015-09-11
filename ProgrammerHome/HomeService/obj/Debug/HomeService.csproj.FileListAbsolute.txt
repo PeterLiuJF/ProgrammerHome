@@ -1,0 +1,10 @@
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\bin\HomeService.dll.config
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\bin\HomeService.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\bin\HomeService.pdb
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\bin\ModelLibrary.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\bin\ToolLib.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\bin\ModelLibrary.pdb
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\bin\ToolLib.pdb
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\obj\Debug\HomeService.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\obj\Debug\HomeService.pdb
+F:\MyProject\ProgrammerHome\ProgrammerHome\HomeService\obj\Debug\HomeService.csprojResolveAssemblyReference.cache

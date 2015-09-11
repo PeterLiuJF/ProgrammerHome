@@ -12,11 +12,11 @@ namespace ProgrammerHome
     }
     public class PlayDetailModel
     {
-        public int ID;
-        public string title;
-        public string artist;
-        public string mp3;
-        public string oga;
-        public string poster;
+        public int ID{ get; set; }
+        public string title{ get; set; }
+        public string artist{ get; set; }
+        public string mp3{ get; set; }
+        public string oga{ get; set; }
+        public string poster{ get; set; }
     }
 }

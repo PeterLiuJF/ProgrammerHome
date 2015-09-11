@@ -7,19 +7,19 @@ namespace ProgrammerHome
 {
     public class GameModel
     {
-        public int ID;
-        public string Name;
-        public string FilePath;
-        public string FileSize;
-        public string ImageFilePath;
-        public string Detail;
+        public int ID{ get; set; }
+        public string Name{ get; set; }
+        public string FilePath{ get; set; }
+        public string FileSize{ get; set; }
+        public string ImageFilePath{ get; set; }
+        public string Detail{ get; set; }
     }
 
     public class GameTypeModel
     {
-        public int ID;
-        public string MainType;
-        public string TypeName;
+        public int ID{ get; set; }
+        public string MainType{ get; set; }
+        public string TypeName{ get; set; }
         public List<GameModel> Games = new List<GameModel>();
     }
 }
