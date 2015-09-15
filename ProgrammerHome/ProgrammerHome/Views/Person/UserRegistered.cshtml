@@ -7,85 +7,257 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-@using (Ajax.BeginForm("RegisterUser", "Person", new AjaxOptions { }, new { @class = "am-form",
-    @id = "doc-vld-msg" }))
+<style>
+    #user_form .val_msg {
+        position: absolute;
+        min-width: 150px;
+        height: 26px;
+        color: red;
+        margin-left: 100px;
+    }
+
+
+    #user_form .am-form-group {
+        width: 300px;
+    }
+    #user_form fieldset{
+        margin:0px auto;
+        width:800px;
+        border:1px solid #cccccc;
+        -webkit-border-radius: 15px;
+        border-radius:15px;
+    }
+    #user_form fieldset legend{
+        width:auto;
+    }
+    #user_form fieldset .legend1{
+        width:98px;
+        height:37px;
+        border:1px solid #eaede4;
+        -webkit-border-radius: 1000px;
+        border-radius:1000px;
+        background-color:#3bb4f2;
+        color:white;
+        display:block;
+        text-align:center;
+    }
+    #user_form fieldset table{
+        margin:0px auto;
+    }
+    #user_form td {
+        padding: 0px 10px;
+    }
+    #user_form #detail_table{
+        display:none;
+    }
+    #my-alert #reg_result{
+        display:none;
+    }
+    #my-alert #loading_btn{
+        display:none;
+    }
+</style>
+@using (Ajax.BeginForm("RegisterUser", "Person", new AjaxOptions
 {
-<fieldset>
-    <legend>JS 表单验证</legend>
-    <div class="am-form-group">
-        @Html.LabelFor(model => model.Account)：
-        @Html.TextBoxFor(model => model.Account, new { @minlength = "3",
-       @placeholder = "输入用户名（至少 3 个字符）",@required="required"})
-    </div>
-    
-    <div class="am-form-group">
-        @Html.LabelFor(model => model.Password)：
-        @Html.TextBoxFor(model => model.Password, new { @placeholder = "把密码交出来！",
-       @required = "required", @type = "password", @minlength = 6, @maxlength = 12 })
-    </div>
-    <div class="am-form-group">
-        <label for="password2">确认密码：</label>
-        <input type="password" id="password2" placeholder="请与上面输入的值一致" data-equal-to="password" required />
-    </div>
-    <div class="am-form-group">
-        @Html.LabelFor(model => model.Email)：
-        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱", 
-       @required = "required" })
-    </div>
+    HttpMethod = "post",
+    OnSuccess = "tips",
+    OnBegin = "showLoading",
+}, new
+{
+    @class = "am-form",
+    @id = "user_form"
+}))
+{
+    <fieldset>
+        <legend><span class="legend1">用户注册</span></legend>
+        <table>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Account)：
+                        @Html.TextBoxFor(model => model.Account, "", new { @placeholder = "输入用户名" })
+                        @Html.ValidationMessageFor(m => m.Account, "", new { @class = "val_msg" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Email)：
+                        @Html.TextBoxFor(model => model.Email, "", new { @placeholder = "输入邮箱" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "val_msg" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Password)：
+                        @Html.TextBoxFor(model => model.Password, "", new {@type="password", @placeholder = "把密码交出来！" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "val_msg" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.PasswordConfirm)：
+                        @Html.TextBoxFor(model => model.PasswordConfirm, "", new { @type = "password", @placeholder = "把密码交出来！" })
+                        @Html.ValidationMessageFor(m => m.PasswordConfirm, "", new { @class = "val_msg" })
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 
-    <div class="am-form-group">
-        @Html.LabelFor(model => model.Email)：
-        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱",
-       @required = "required" })
-    </div>
+    <fieldset>
+        <legend><button type="button" class="am-btn am-btn-secondary am-round" id="detail_btn">详细资料</button></legend>
+        <table id="detail_table">
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Name)：
+                        @Html.TextBoxFor(model => model.Name, "", new { @placeholder = "输入姓名" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Sex)：<br />
+                        <label class="am-radio-inline">
+                            <input type="radio" name="Sex" value="男" data-am-ucheck checked>男
+                        </label>
+                        <label class="am-radio-inline">
+                            <input type="radio" name="Sex" value="女" data-am-ucheck>女
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.BirthDay)：
+                        <div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years', minViewMode: 'days'}">
+                            @Html.TextBoxFor(model => model.BirthDay, new { @placeholder = "输入出生日期", @readonly = "readonly", @class = "am-form-field" })
+                            <span class="am-input-group-btn am-datepicker-add-on">
+                                <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span> </button>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.QQ)：
+                        @Html.TextBoxFor(model => model.QQ, new { @placeholder = "输入QQ" })
+                        @Html.ValidationMessageFor(m => m.QQ, "", new { @class = "val_msg" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.HomeTown)：
+                        @Html.TextBoxFor(model => model.HomeTown, new { @placeholder = "输入家乡" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.TheLatter)：
+                        @Html.TextBoxFor(model => model.TheLatter, new { @placeholder = "输入现居住地" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.IntroduceMyself)：
+                        @Html.TextAreaFor(model => model.IntroduceMyself, new { @placeholder = "输入自我介绍", @minlength = "10", @maxlength = "100" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.InterestIn)：
+                        @Html.TextAreaFor(model => model.InterestIn, new { @placeholder = "输入兴趣", @minlength = "10", @maxlength = "100" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Position)：
+                        @Html.TextBoxFor(model => model.Position, new { @placeholder = "输入职位" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Company)：
+                        @Html.TextBoxFor(model => model.Company, new { @placeholder = "输入单位" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.WorkingConditions)：<br />
+                        <label class="am-radio-inline">
+                            <input type="radio" name="WorkingConditions" value="0" data-am-ucheck checked>已工作
+                        </label>
+                        <label class="am-radio-inline">
+                            <input type="radio" name="WorkingConditions" value="1" data-am-ucheck>未工作
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Marriage)：<br />
+                        <label class="am-radio-inline">
+                            @Html.RadioButtonFor(model => model.Marriage, new { @required = "required" }) 未婚
+                        </label>
+                        <label class="am-radio-inline">
+                            @Html.RadioButtonFor(model => model.Marriage, new { @required = "required" }) 已婚
+                        </label>
+                        <label class="am-radio-inline">
+                            @Html.RadioButtonFor(model => model.Marriage, new { @required = "required" }) 离异
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 
-    <div class="am-form-group">
-        @Html.LabelFor(model => model.Email)：
-        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱", 
-       @required = "required" })
+    <div style="text-align:center;margin:10px auto;">
+        <button class="am-btn am-btn-primary  am-round" type="submit">提&nbsp;&nbsp;&nbsp;交</button>
     </div>
-
-    <div class="am-form-group">
-        @Html.LabelFor(model => model.Sex)：
-        <label class="am-radio-inline">
-            @Html.RadioButtonFor(model => model.Sex, new { @required = "required" }) 男
-        </label>
-        <label class="am-radio-inline">
-            @Html.RadioButtonFor(model => model.Sex, new { @required = "required" }) 女
-        </label>
-        <label class="am-radio-inline">
-            @Html.RadioButtonFor(model => model.Sex, new { @required = "required" }) 其他
-        </label>
-    </div>
-    <div class="am-form-group">
-        @Html.LabelFor(model => model.Email)：
-        @Html.TextBoxFor(model => model.Account, new { @placeholder = "输入邮箱", @required = "required" })
-    </div>
-
-    <button class="am-btn am-btn-secondary" type="submit">提交</button>
-</fieldset>
 }
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div id="loading">
+            <div class="am-modal-hd">正在注册...</div>
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+        <div class="am-modal-hd" id="reg_result"></div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" id="loading_btn">确定</span>
+        </div>
+    </div>
+</div>
 <script>
+    var reg_flag = false;
+    function showLoading() {
+        $("#my-alert").modal("open");
+    }
+    function tips(data) {
+        $("#reg_result").html(data);
+        $("#my-alert #loading").hide();
+        $("#my-alert #reg_result").show();
+        $("#my-alert #loading_btn").show(200);
+        reg_flag = data == "注册成功！";
+    }
     $(function () {
-        $('#doc-vld-msg').validator({
-            onValid: function (validity) {
-                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
-            },
-
-            onInValid: function (validity) {
-                var $field = $(validity.field);
-                var $group = $field.closest('.am-form-group');
-                var $alert = $group.find('.am-alert');
-                // 使用自定义的提示信息 或 插件内置的提示信息
-                var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
-
-                if (!$alert.length) {
-                    $alert = $('<div class="am-alert am-alert-danger"></div>').hide().
-                      appendTo($group);
-                }
-
-                $alert.html(msg).show();
-            }
-        });
+        $("#detail_btn").click(function () {
+            $("#detail_table").toggle(200);
+        })
+        $("#my-alert #loading_btn").click(function () {
+            if (reg_flag)
+            location.href = "../Home/Index";
+        })
     });
-  </script>
+</script>

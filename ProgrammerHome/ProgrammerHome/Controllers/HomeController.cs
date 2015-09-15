@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgrammerHome.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,5 +17,17 @@ namespace ProgrammerHome.Controllers
             return View();
         }
 
+        public ActionResult UserLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login()
+        {
+            PersonService service=new PersonService();
+            service.Login("", "");
+            return Content("true");
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ToolLib.util;
 
 namespace ProgrammerHome.Controllers
 {
@@ -26,7 +27,35 @@ namespace ProgrammerHome.Controllers
         [HttpPost]
         public ActionResult RegisterUser()
         {
-            return Content("");
+            var flag = false;
+            try
+            {
+                var model = new UserInfoModel()
+                            {
+                                Account = Normal.ListStr(Request["Account"]),
+                                Password = Normal.CheckPoint(PwdUtil.MD5Encrypt(Normal.ListStr(Request["Password"]))),
+                                Email = Normal.ListStr(Request["Email"]),
+                                Name = Normal.ListStr(Request["Name"]),
+                                Sex = Normal.ListStr(Request["Sex"]),
+                                BirthDay = Normal.ListStr(Request["BirthDay"]),
+                                HomeTown = Normal.ListStr(Request["HomeTown"]),
+                                Marriage = Normal.ListStr(Request["Marriage"]),
+                                TheLatter = Normal.ListStr(Request["TheLatter"]),
+                                Position = Normal.ListStr(Request["Position"]),
+                                Company = Normal.ListStr(Request["Company"]),
+                                WorkingConditions = Normal.ParseInt(Request["WorkingConditions"]),
+                                InterestIn = Normal.ListStr(Request["InterestIn"]),
+                                QQ = Normal.ListStr(Request["QQ"]),
+                                IntroduceMyself = Normal.ListStr(Request["IntroduceMyself"])
+                            };
+                flag = personService.AddUserInfo(model);
+                return flag ? Content("注册成功！") : Content("注册失败！");
+            }
+            catch (Exception)
+            {
+                return Content("注册失败！");
+            }
+            
         }
     }
 }

@@ -314,6 +314,8 @@
     <Content Include="Views\Recreation\GameMain.cshtml" />
     <Content Include="Views\Person\ShowInfo.cshtml" />
     <Content Include="Views\Person\UserRegistered.cshtml" />
+    <Content Include="Views\Shared\LoginPage.cshtml" />
+    <Content Include="Views\Home\UserLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

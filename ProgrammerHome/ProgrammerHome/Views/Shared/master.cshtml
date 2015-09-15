@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=9,IE=11" />
     <title>@ViewBag.Title</title>
     <style>
-        #main{
-            width:90%;
-            margin:0 auto;
-            background-color:#eaede4;
+        #main {
+            width: 90%;
+            margin: 0 auto;
+            background-color: #eaede4;
         }
-        #main_body{
-            overflow:hidden;
-            padding:10px 10px;
-            height:auto;
-            width:auto;
-            min-width:850px;
+
+        #main_body {
+            overflow: hidden;
+            padding: 10px 10px;
+            height: auto;
+            width: auto;
+            min-width: 850px;
         }
     </style>
     <link href="~/assets/css/amazeui.min.css" rel="stylesheet" />
@@ -33,6 +34,11 @@
         </div>
         @Html.Partial("footer", null)
     </div>
-    
+
 </body>
 </html>
+<script>
+    function openwin(url) {
+        window.open(url, "newwindow", "height=600, width=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no")
+    }
+</script>
