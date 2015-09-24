@@ -132,6 +132,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Models\PlayListModel.cs" />
     <Compile Include="Models\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CommonService.cs" />
     <Compile Include="Service\LibraryService.cs" />
     <Compile Include="Service\PersonService.cs" />
     <Compile Include="Service\RecreationService.cs" />
@@ -313,9 +315,11 @@
     <Content Include="Views\Recreation\RecreationMain.cshtml" />
     <Content Include="Views\Recreation\GameMain.cshtml" />
     <Content Include="Views\Person\ShowInfo.cshtml" />
-    <Content Include="Views\Person\UserRegistered.cshtml" />
     <Content Include="Views\Shared\LoginPage.cshtml" />
-    <Content Include="Views\Home\UserLogin.cshtml" />
+    <Content Include="Views\Home\UserRegistered.cshtml" />
+    <Content Include="Views\Person\UpdateUserInfo.cshtml" />
+    <Content Include="Views\Shared\myheader.cshtml" />
+    <Content Include="Views\Shared\mymaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

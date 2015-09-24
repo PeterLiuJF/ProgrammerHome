@@ -8,7 +8,7 @@ using ToolLib.util;
 
 namespace ProgrammerHome.Controllers
 {
-    public class RecreationController : Controller
+    public class RecreationController : BaseController
     {
         //
         // GET: /Recreation/
@@ -17,21 +17,26 @@ namespace ProgrammerHome.Controllers
         #region Music
         public ActionResult RecreationMain()
         {
-            var model = reService.GetPlayListItems();
+            var model = reService.GetPlayListItems(LoginID);
             return View(model);
         }
 
         [HttpPost]
         public JsonResult LoadMusic(string type)
         {
-            return Json(reService.GetMusicItems(Normal.ParseInt(type)));
+            return Json(reService.GetMusicItems(Normal.ParseInt(type), LoginID));
+        }
+
+        public ActionResult AddMusic()
+        {
+            return View();
         }
         #endregion
 
         #region Game
         public ActionResult GameMain()
         {
-            var list = reService.GetGameTypeItems();
+            var list = reService.GetGameTypeItems(LoginID);
             return View(list);
         }
         #endregion

@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "首页";
-    Layout = "~/Views/Shared/master.cshtml";
+    Layout = ViewBag.Master;
 }
 <style>
     #dateBox {
@@ -50,11 +50,11 @@
     </div>
 </div>
 <div class="body_right">
-    <input type="button" onclick="openwin('../Home/UserLogin')" />
 </div>
 <script>
     $(document).ready(function () {
-        
-
+        if ($(".am-header-title").html() == "个人空间" && $(".login_show_box").html().indexOf("登录") >= 0) {
+            ShowLogin();
+        }
     });
 </script>

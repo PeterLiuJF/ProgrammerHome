@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "UserRegistered";
-    Layout = "~/Views/Shared/master.cshtml";
+    Layout = ViewBag.Master;
 }
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -20,44 +20,52 @@
     #user_form .am-form-group {
         width: 300px;
     }
-    #user_form fieldset{
-        margin:0px auto;
-        width:800px;
-        border:1px solid #cccccc;
+
+    #user_form fieldset {
+        margin: 0px auto;
+        width: 800px;
+        border: 1px solid #cccccc;
         -webkit-border-radius: 15px;
-        border-radius:15px;
+        border-radius: 15px;
     }
-    #user_form fieldset legend{
-        width:auto;
-    }
-    #user_form fieldset .legend1{
-        width:98px;
-        height:37px;
-        border:1px solid #eaede4;
-        -webkit-border-radius: 1000px;
-        border-radius:1000px;
-        background-color:#3bb4f2;
-        color:white;
-        display:block;
-        text-align:center;
-    }
-    #user_form fieldset table{
-        margin:0px auto;
-    }
+
+        #user_form fieldset legend {
+            width: auto;
+        }
+
+        #user_form fieldset .legend1 {
+            width: 98px;
+            height: 37px;
+            border: 1px solid #eaede4;
+            -webkit-border-radius: 1000px;
+            border-radius: 1000px;
+            background-color: #3bb4f2;
+            color: white;
+            display: block;
+            text-align: center;
+        }
+
+        #user_form fieldset table {
+            margin: 0px auto;
+        }
+
     #user_form td {
         padding: 0px 10px;
     }
-    #user_form #detail_table{
-        display:none;
+
+    #user_form #detail_table {
+        display: none;
     }
-    #my-alert #reg_result{
-        display:none;
+
+    #my-alert #reg_result {
+        display: none;
     }
-    #my-alert #loading_btn{
-        display:none;
+
+    #my-alert #loading_btn {
+        display: none;
     }
 </style>
-@using (Ajax.BeginForm("RegisterUser", "Person", new AjaxOptions
+@using (Ajax.BeginForm("RegisterUser", "Home", new AjaxOptions
 {
     HttpMethod = "post",
     OnSuccess = "tips",
@@ -91,7 +99,7 @@
                 <td>
                     <div class="am-form-group">
                         @Html.LabelFor(model => model.Password)：
-                        @Html.TextBoxFor(model => model.Password, "", new {@type="password", @placeholder = "把密码交出来！" })
+                        @Html.TextBoxFor(model => model.Password, "", new { @type = "password", @placeholder = "把密码交出来！" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "val_msg" })
                     </div>
                 </td>
@@ -133,7 +141,7 @@
                     <div class="am-form-group">
                         @Html.LabelFor(model => model.BirthDay)：
                         <div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years', minViewMode: 'days'}">
-                            @Html.TextBoxFor(model => model.BirthDay, new { @placeholder = "输入出生日期", @readonly = "readonly", @class = "am-form-field" })
+                            @Html.TextBoxFor(model => model.BirthDay, new { @placeholder = "输入出生日期", @readonly = "readonly", @class = "am-form-field"})
                             <span class="am-input-group-btn am-datepicker-add-on">
                                 <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span> </button>
                             </span>
@@ -206,13 +214,13 @@
                     <div class="am-form-group">
                         @Html.LabelFor(model => model.Marriage)：<br />
                         <label class="am-radio-inline">
-                            @Html.RadioButtonFor(model => model.Marriage, new { @required = "required" }) 未婚
+                            <input type="radio" name="Marriage" value="未婚" data-am-ucheck checked> 未婚
                         </label>
                         <label class="am-radio-inline">
-                            @Html.RadioButtonFor(model => model.Marriage, new { @required = "required" }) 已婚
+                            <input type="radio" name="Marriage" value="已婚" data-am-ucheck> 已婚
                         </label>
                         <label class="am-radio-inline">
-                            @Html.RadioButtonFor(model => model.Marriage, new { @required = "required" }) 离异
+                            <input type="radio" name="Marriage" value="离异" data-am-ucheck> 离异
                         </label>
                     </div>
                 </td>

@@ -35,15 +35,15 @@
 <div class="am-modal am-modal-no-btn" tabindex="-1" id="login_box">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">
-            登陆
+            登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;陆
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
         </div>
         <div class="am-modal-bd">
-            @using (Ajax.BeginForm("Login", "Home", new AjaxOptions
+            @using (Ajax.BeginForm("../Home/Login", "Home", new AjaxOptions
 {
     HttpMethod = "post",
-    OnSuccess = "tips",
-    OnBegin = "showLoading",
+    OnSuccess = "logintips",
+    OnBegin = "showLoadingImg",
 }, new
 {
     @class = "am-form",
@@ -52,21 +52,21 @@
 }))
             {
                 <fieldset>
-                    <div class="am-form-group">
-                        <label for="doc-vld-name-2-0">用户名：</label>
-                        <input class="log_input" type="text" id="doc-vld-name-2-0" name="account" placeholder="请输入用户名" required />
+                    <div class="am-input-group am-input-group-primary">
+                        <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+                        <input class="log_input am-form-field" type="text" id="account" name="account" placeholder="请输入用户名" required />
                     </div>
-
-                    <div class="am-form-group">
-                        <label for="doc-vld-pwd-1-0">密&nbsp;&nbsp;&nbsp; 码：</label>
-                        <input class="log_input" type="password" id="doc-vld-pwd-1-0" name="password" placeholder="请输入密码" required/>
+                    <br />
+                    <div class="am-input-group am-input-group-primary">
+                        <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+                        <input class="log_input am-form-field" type="password" id="password" name="password" placeholder="请输入密码" required />
                     </div>
                     <div class="am-checkbox">
                         <label>
                             <input type="checkbox" checked> 记住十万年
                         </label>
                         <a href="#" style="float:right;margin:0px 10px;">密码遗忘?</a>
-                        <a href="#" style="float:right">注册</a>
+                        <a href="../Home/UserRegistered" style="float:right">注册</a>
                     </div>
 
                     <button class="am-btn am-btn-secondary am-btn-block" type="submit"><i class="am-icon-spinner am-icon-spin" id="login_img"></i>提&nbsp;&nbsp;交</button>
@@ -78,17 +78,21 @@
 </div>
 <script>
     $(function () {
-        ShowLogin();
+
     });
-    function tips(data) {
-        if (data == "true") {
+    function logintips(data) {
+        if (data == "True") {
             HideLogin();
-            $("#login_img").hide();
+            $(".login_show_box").html("<a href='../Person/ShowInfo'>" + $("#account").val() + "</a>"
+                +"<span style='margin:0px 10px;'>·</span>"
+                +"<a href='javascript:void(0);' onclick='Logon()'>注销</a>")
         } else {
-            $("#login_result").html(data);
+            $("#login_result").html("用户名或密码错误。");
         }
+        $("#login_img").hide();
     }
-    function showLoading() {
+    function showLoadingImg() {
+        $("#login_img").hide();
         $("#login_img").show();
     }
     function ShowLogin() {

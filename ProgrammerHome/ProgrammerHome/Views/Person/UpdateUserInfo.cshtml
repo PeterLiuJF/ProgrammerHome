@@ -1,0 +1,206 @@
+﻿@model ProgrammerHome.UserInfoModel
+@{
+    ViewBag.Title = "UpdateUserInfo";
+    Layout = "~/Views/Shared/mymaster.cshtml";
+}
+<style>
+    #user_form fieldset {
+        margin: 0px auto;
+        width: 800px;
+        border: 1px solid #cccccc;
+        -webkit-border-radius: 15px;
+        border-radius: 15px;
+    }
+
+        #user_form fieldset legend {
+            width: auto;
+        }
+
+        #user_form fieldset .legend1 {
+            width: 150px;
+            height: 37px;
+            border: 1px solid #eaede4;
+            -webkit-border-radius: 1000px;
+            border-radius: 1000px;
+            background-color: #3bb4f2;
+            color: white;
+            display: block;
+            text-align: center;
+        }
+
+        #user_form fieldset table {
+            margin: 10px auto;
+        }
+        #user_form fieldset table .am-form-group{
+           min-height:50px;
+        }
+            #user_form fieldset table .input1 {
+                width: 270px;
+            }
+</style>
+@using (Ajax.BeginForm("DoUpdateUserInfo", "Person", new AjaxOptions
+{
+    HttpMethod = "post",
+    OnSuccess = "tips",
+    OnBegin = "showLoading",
+}, new
+{
+    @class = "am-form",
+    @id = "user_form"
+}))
+{
+    @Html.HiddenFor(model => model.Name)
+    <fieldset>
+        <legend><span class="legend1">修改个人信息</span></legend>
+        <table class="am-table am-table-striped am-table-hover">
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Name)
+                        @Html.TextBoxFor(model => model.Name, "", new { @placeholder = "输入姓名", @class = "input1" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Sex)<br />
+                        <label class="am-radio-inline">
+                            <input type="radio" name="Sex" value="男" data-am-ucheck checked>男
+                        </label>
+                        <label class="am-radio-inline">
+                            <input type="radio" name="Sex" value="女" data-am-ucheck>女
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.BirthDay)
+                        <div class="am-input-group am-datepicker-date input1" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years', minViewMode: 'days'}">
+                            @Html.TextBoxFor(model => model.BirthDay, new { @placeholder = "输入出生日期", @readonly = "readonly", @class = "am-form-field" })
+                            <span class="am-input-group-btn am-datepicker-add-on">
+                                <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span> </button>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.HomeTown)
+                        @Html.TextBoxFor(model => model.HomeTown, new { @placeholder = "输入家乡", @class = "input1" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.TheLatter)
+                        @Html.TextBoxFor(model => model.TheLatter, new { @placeholder = "输入现居住地", @class = "input1" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.QQ)
+                        @Html.TextBoxFor(model => model.QQ, new { @placeholder = "输入QQ", @class = "input1" })
+                        @Html.ValidationMessageFor(m => m.QQ, "", new { @class = "val_msg" })
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Position)
+                        @Html.TextBoxFor(model => model.Position, new { @placeholder = "输入职位", @class = "input1" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Company)
+                        @Html.TextBoxFor(model => model.Company, new { @placeholder = "输入单位", @class = "input1" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.WorkingConditions)<br />
+                        <label class="am-radio-inline">
+                            <input type="radio" name="WorkingConditions" value="0" data-am-ucheck checked>已工作
+                        </label>
+                        <label class="am-radio-inline">
+                            <input type="radio" name="WorkingConditions" value="1" data-am-ucheck>未工作
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.Marriage)<br />
+                        <label class="am-radio-inline">
+                            <input type="radio" name="Marriage" value="未婚" data-am-ucheck checked> 未婚
+                        </label>
+                        <label class="am-radio-inline">
+                            <input type="radio" name="Marriage" value="已婚" data-am-ucheck> 已婚
+                        </label>
+                        <label class="am-radio-inline">
+                            <input type="radio" name="Marriage" value="离异" data-am-ucheck> 离异
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.InterestIn)>
+                        @Html.TextAreaFor(model => model.InterestIn, new { @placeholder = "输入兴趣", @minlength = "10", @maxlength = "100" })
+                    </div>
+                </td>
+                <td>
+                    <div class="am-form-group">
+                        @Html.LabelFor(model => model.IntroduceMyself)
+                        @Html.TextAreaFor(model => model.IntroduceMyself, new { @placeholder = "输入自我介绍", @minlength = "10", @maxlength = "100" })
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <div style="text-align:center;margin:10px auto;">
+        <button class="am-btn am-btn-primary  am-round" type="submit">修&nbsp;&nbsp;&nbsp;改</button>
+    </div>
+}
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div id="loading">
+            <div class="am-modal-hd">正在修改...</div>
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+        <div class="am-modal-hd" id="reg_result"></div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" id="loading_btn">确定</span>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    var reg_flag = false;
+    function showLoading() {
+        $("#my-alert").modal("open");
+    }
+    function tips(data) {
+        $("#reg_result").html(data);
+        $("#my-alert #loading").hide();
+        $("#my-alert #reg_result").show();
+        $("#my-alert #loading_btn").show(200);
+        reg_flag = data == "修改成功！";
+    }
+    $(function () {
+        $("#my-alert #loading_btn").click(function () {
+            if (reg_flag)
+                location.href = "../Person/UpdateUserInfo";
+        })
+    });
+</script>

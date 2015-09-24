@@ -1,12 +1,7 @@
 ﻿<style>
-    #main_header{
-        width:100%;
-        height:auto;
-    }
-    #main_header .login_show_box{
-        float:right;
-        margin-top:-40px;
-        margin-right:20px;
+    #main_header {
+        width: 100%;
+        height: auto;
     }
 </style>
 <div id="main_header">
@@ -17,38 +12,27 @@
                 <i class="am-header-icon am-icon-home"></i>
             </a>
         </div>
-        <h1 class="am-header-title">个人空间</h1>
+        <h1 class="am-header-title">我们的空间</h1>
     </header>
     <nav data-am-widget="menu" class="am-menu  am-menu-slide1" data-am-menu-collapse>
         <a href="javascript: void(0)" class="am-menu-toggle">
             <i class="am-menu-toggle-icon am-icon-bars"></i>
         </a>
         <ul class="am-menu-nav am-avg-sm-4 am-collapse">
-            <li class="am-parent">
-                <a href="##" class="">个人中心</a>
-                <ul class="am-menu-sub am-collapse  am-avg-sm-2 ">
-                    <li class="">
-                        <a href="../Person/ShowInfo" class="">个人信息</a>
-                    </li>
-                    <li class="">
-                        <a href="##" class="">修改个人资料</a>
-                    </li>
-                    <li class="am-menu-nav-channel">
-                        <a href="##" class="" title="公司">进入栏目 &raquo;</a>
-                    </li>
-                </ul>
+            <li class="">
+                <a href="javascript:void(0);" onclick="LoadPage('../Home/Index', true)">个人空间</a>
             </li>
             <li class="">
-                <a href="../Library/Library" class="">图书馆</a>
+                <a href="javascript:void(0);" onclick="LoadPage('../Library/Library', false)">图书馆</a>
             </li>
             <li class="am-parent">
                 <a href="##" class="">娱乐</a>
                 <ul class="am-menu-sub am-collapse  am-avg-sm-2 ">
                     <li class="">
-                        <a href="../Recreation/RecreationMain" class="">影视音乐</a>
+                        <a href="javascript:void(0);" onclick="LoadPage('../Recreation/RecreationMain', false)">影视音乐</a>
                     </li>
                     <li class="am-menu-nav-channel">
-                        <a href="../Recreation/GameMain" class="" title="游戏">游戏 &raquo;</a>
+                        <a href="javascript:void(0);" onclick="LoadPage('../Recreation/GameMain', false)" title="游戏">游戏 &raquo;</a>
                     </li>
                 </ul>
             </li>
@@ -56,10 +40,18 @@
                 <a href="##" class="">联系</a>
             </li>
         </ul>
-        <div class="login_show_box">
-            <a href="javascript:ShowLogin();">登录</a>
-            &nbsp;&nbsp;· &nbsp;&nbsp;<a href="../Person/UserRegistered">注册</a>
-        </div>
     </nav>
+    <script>
+        $(function () {
+
+        });
+
+        function LoadPage(url,openNewWindow) {
+            if (openNewWindow)
+                openwin(url + "?MySpace=1");
+            else
+                window.location.href = url;
+        }
+    </script>
 </div>
-@Html.Partial("LoginPage", null)
+

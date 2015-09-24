@@ -10,9 +10,12 @@ namespace ProgrammerHome.Service
 {
     public class RecreationService
     {
-        public List<PlayDetailModel> GetMusicItems(int type)
+        public List<PlayDetailModel> GetMusicItems(int type, int userID = 0)
         {
             string sql = string.Format("select * from PlayList where type={0}", type);
+            if (userID != 0)
+                sql += string.Format(" and userID={0}", userID);
+
             List<PlayDetailModel> list = new List<PlayDetailModel>();
             DataTable dt = new DataTable();
             SqlAccess.QueryDt(dt, sql);
@@ -29,9 +32,12 @@ namespace ProgrammerHome.Service
             return list;
         }
 
-        public PlayListModel GetPlayListItems()
+        public PlayListModel GetPlayListItems(int userID = 0)
         {
             string sql = "select * from PlayList";
+            if (userID != 0)
+                sql += string.Format(" where userID={0}", userID);
+
             PlayListModel model = new PlayListModel();
             DataTable dt = new DataTable();
             SqlAccess.QueryDt(dt, sql);
@@ -66,9 +72,12 @@ namespace ProgrammerHome.Service
             return model;
         }
 
-        public List<GameModel> GetGameItems()
+        public List<GameModel> GetGameItems(int userID = 0)
         {
             string sql = "select * from Game";
+            if (userID != 0)
+                sql += string.Format(" where userID={0}", userID);
+
             List<GameModel> list = new List<GameModel>();
             DataTable dt = new DataTable();
             SqlAccess.QueryDt(dt, sql);
@@ -83,11 +92,14 @@ namespace ProgrammerHome.Service
             return list;
         }
 
-        public List<GameTypeModel> GetGameTypeItems()
+        public List<GameTypeModel> GetGameTypeItems(int userID = 0)
         {
 
             string sql = @"select r.*,GameID=g.id,g.name,g.filepath,g.filesize,g.ImageFilePath,g.Detail 
 from RecreationType r left join Game g on g.typeid=r.id where maintype='单机游戏'";
+
+            if (userID != 0)
+                sql += string.Format(" and g.userID={0}", userID);
             List<GameTypeModel> list = new List<GameTypeModel>();
             DataTable dt = new DataTable();
             SqlAccess.QueryDt(dt, sql);

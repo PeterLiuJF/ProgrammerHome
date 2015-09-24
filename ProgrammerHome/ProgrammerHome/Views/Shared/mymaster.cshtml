@@ -3,7 +3,6 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="X-UA-Compatible" content="IE=9,IE=11" />
     <title>@ViewBag.Title</title>
     <style>
         #main {
@@ -28,17 +27,16 @@
 </head>
 <body>
     <div id="main">
-        @Html.Partial("header", null)
+        @Html.Partial("myheader", null)
         <div id="main_body">
             @RenderBody()
         </div>
         @Html.Partial("footer", null)
     </div>
-
-</body>
-</html>
-<script>
+    <script>
     function openwin(url) {
         window.open(url, "newwindow", "height=800, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no")
     }
-</script>
+    </script>
+</body>
+</html>

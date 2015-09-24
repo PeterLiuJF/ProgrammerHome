@@ -8,7 +8,7 @@ using ToolLib.util;
 
 namespace ProgrammerHome.Controllers
 {
-    public class LibraryController : Controller
+    public class LibraryController : BaseController
     {
         LibraryService libService = new LibraryService();
         //
