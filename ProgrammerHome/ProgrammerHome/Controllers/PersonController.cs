@@ -1,6 +1,7 @@
 ﻿using ProgrammerHome.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -56,6 +57,33 @@ namespace ProgrammerHome.Controllers
                 return Content("注册失败！");
             }
 
+        }
+        #endregion
+
+        #region 图片中心
+        public ActionResult ImageSpace()
+        {
+            return View(personService.GetImages(LoginID));
+        }
+
+        [HttpPost]
+        public ActionResult UploadImages()
+        {
+            List<ImageModel> list = new List<ImageModel>();
+            var files = Request.Files;
+            var path = HttpContext.Server.MapPath(@"..\images");
+            for (int i = 0; i < files.Count; i++)
+            {
+                var filename = DateTime.Now.ToString("yyyyMMddHHmmss") + files[i].FileName;
+                files[i].SaveAs(Path.Combine(path, filename));
+                list.Add(new ImageModel()
+                {
+                    PicPath = @"..\images\"+filename,
+                    UserID = LoginID
+                });
+            }
+            personService.AddImages(list);
+            return Content("<script>window.open('../Person/ImageSpace?MySpace=1', 'newwindow', 'height=800, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no')</script>");
         }
         #endregion
     }

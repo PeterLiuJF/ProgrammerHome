@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProgrammerHome.ImageModel>
+
+@{
+    ViewBag.Title = "ImageSpace";
+    Layout = ViewBag.Master;
+}
+<div class="am-slider am-slider-default am-slider-carousel"
+     data-am-flexslider="{itemWidth: 200, itemMargin: 5, slideshow: false}">
+    <ul class="am-slides">
+        @foreach (var item in Model)
+        {
+            <li><img src="@item.PicPath" /></li>
+        }
+        
+    </ul>
+</div>
+<form method="post" enctype="multipart/form-data" action="UploadImages" class="am-form">
+    <div id="music_add_box">
+        <div class="am-form-group am-form-file">
+            <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+            </button>
+            <input id="doc-form-file" name="file" type="file" multiple>
+        </div>
+        <div id="file-list"></div>
+    </div>
+    <button type="submit" class="am-btn am-btn-primary am-radius">上传</button>
+</form>
+<script type="text/javascript">
+    var myPlaylist = null;
+    var fileFormat = '.jpg.gif.png';
+    $(document).ready(function () {
+
+        //AddPlayItem('1');
+        $('#doc-form-file').on('change', function () {
+            var fileNames = '';
+            $.each(this.files, function () {
+                var temp = this.name.substring(this.name.lastIndexOf(".") + 1);
+                if (fileFormat.indexOf(temp) < 0) {
+                    fileNames = "只能是.jpg.gif.png文件";
+                    return false;
+                }
+                fileNames += '<span class="am-badge">' + this.name + '</span> ';
+            });
+            $('#file-list').html(fileNames);
+        });
+    });
+</script>

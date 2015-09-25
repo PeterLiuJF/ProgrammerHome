@@ -148,6 +148,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GameModel.cs" />
+    <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\LibraryModel.cs" />
     <Compile Include="Models\PlayListModel.cs" />
     <Compile Include="Models\UserInfoModel.cs" />
@@ -285,6 +286,11 @@
     <Content Include="assets\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\myhome.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\2.gif" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\4.jpg" />
+    <Content Include="images\5.jpg" />
     <Content Include="Music\念白-自由人.mp3" />
     <Content Include="Music\蓝幻-千秋月别西楚将.mp3" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -328,10 +334,10 @@
     <Content Include="Views\Person\UpdateUserInfo.cshtml" />
     <Content Include="Views\Shared\myheader.cshtml" />
     <Content Include="Views\Shared\mymaster.cshtml" />
+    <Content Include="Views\Person\ImageSpace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

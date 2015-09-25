@@ -33,6 +33,9 @@ namespace ProgrammerHome.Controllers
                     Response.Write("<script>window.top.location.href='" + Url.Action("../Home/Index") + "';</script>");//跳转页面
                     Response.End();
                 }
+            }
+            if (Request.Cookies["PH_User"] != null)
+            {
                 _loginID = Normal.ParseInt(Request.Cookies["PH_User"].Values["User_Id"]);
                 _loginName = Request.Cookies["PH_User"].Values["User_Account"];
             }

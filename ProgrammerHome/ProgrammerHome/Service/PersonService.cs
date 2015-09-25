@@ -74,5 +74,42 @@ namespace ProgrammerHome.Service
 
             return SqlAccess.Execute(sql) > 0;
         }
+
+        #region 图片中心
+        public List<ImageModel> GetImages(int userID)
+        {
+            string sql = "select * from imagespace";
+            if (userID != 0)
+            {
+                sql += string.Format(" where userid={0}", userID);
+            }
+            DataTable dt=new DataTable();
+            SqlAccess.QueryDt(dt, sql);
+            List<ImageModel> list = new List<ImageModel>();
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    list.Add(new ImageModel()
+                    {
+                        ID = Normal.ParseInt(dt.Rows[i]["ID"]),
+                        PicPath = Normal.ListStr(dt.Rows[i]["PicPath"])
+                    });
+                }
+            }
+            return list;
+        }
+
+        public bool AddImages(List<ImageModel> list)
+        {
+            string sql = "";
+            foreach (var item in list)
+            {
+                sql += string.Format("insert into imagespace(picpath,userid) values ('{0}',{1});",
+                    item.PicPath, item.UserID);
+            }
+            return SqlAccess.Execute(sql) > 0;
+        }
+        #endregion
     }
 }
