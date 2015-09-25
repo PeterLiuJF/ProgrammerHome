@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProgrammerHome.LibraryTypeModel>
+
+@{
+    ViewBag.Title = "Library";
+    Layout = ViewBag.Master;
+}
+<style>
+    #library_list {
+        border: 1px solid #f5f5f5;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .library_query td {
+        border-bottom: 1px dashed #f5f5f5;
+    }
+
+    .library_query .kind_title {
+        width: 100px;
+    }
+
+    .library_query .kind_list a{
+        margin:0 5px;
+    }
+    .library_query .kind_list a:hover{
+        color:black;
+    }
+</style>
+<div id="library_list">
+    <table class="library_query">
+        <tr>
+            <td class="kind_title">热门分类:</td>
+            <td class="kind_list" id="Library1">
+                <a href="javascript:void(0)" class="choose">全部</a>
+                @foreach (var item in Model)
+                {
+                    <a href="javascript:void(0)" onclick="ShowLibrary2('@item.ID')">@item.Name</a>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="kind_title">精确分类:</td>
+            <td class="kind_list" id="Library2">
+                <a href="javascript:void(0)" class="choose">全部</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#Library1 a:eq(1)").click();
+    })
+
+    function ShowLibrary2(parentLevel) {
+        $.ajax({
+            type: "POST",
+            url: "Library2?parentLevel=" + parentLevel,
+            success: function (data) {
+                var result = "<a href='javascript:void(0)' class='choose'>全部</a>";
+                $.each(data, function (i, row) {
+                    result += "<a href='javascript:void(0)'>"+row.Name+"</a>";
+                })
+                $("#Library2").html(result);
+            }
+        })
+    }
+</script>

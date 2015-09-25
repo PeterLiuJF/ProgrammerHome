@@ -1,0 +1,4 @@
+F:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\bin\Release\ToolLib.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\bin\Release\ToolLib.pdb
+F:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\obj\Release\ToolLib.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\ToolLib\obj\Release\ToolLib.pdb

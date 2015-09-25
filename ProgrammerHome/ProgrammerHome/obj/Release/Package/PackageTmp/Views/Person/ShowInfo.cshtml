@@ -1,0 +1,64 @@
+﻿@model ProgrammerHome.UserInfoModel
+
+@{
+    ViewBag.Title = "ShowInfo";
+    Layout = "~/Views/Shared/mymaster.cshtml";
+}
+<fieldset>
+    <legend>@Html.DisplayFor(model => model.Name)</legend>
+
+    <table class="am-table am-table-striped am-table-hover">
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Name)</td>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Sex)</td>
+            <td>@Html.DisplayFor(model => model.Sex)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Account)</td>
+            <td>@Html.DisplayFor(model => model.Account)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.BirthDay)</td>
+            <td>@Html.DisplayFor(model => model.BirthDay)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.HomeTown)</td>
+            <td>@Html.DisplayFor(model => model.HomeTown)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Marriage)</td>
+            <td>@Html.DisplayFor(model => model.Marriage)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Position)</td>
+            <td>@Html.DisplayFor(model => model.Position)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Company)</td>
+            <td>@Html.DisplayFor(model => model.Company)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.WorkingConditions)</td>
+            <td>@Html.DisplayFor(model => model.WorkingConditions)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.InterestIn)</td>
+            <td>@Html.DisplayFor(model => model.InterestIn)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.QQ)</td>
+            <td>@Html.DisplayFor(model => model.QQ)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.IntroduceMyself)</td>
+            <td>@Html.DisplayFor(model => model.IntroduceMyself)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.EntryDate)</td>
+            <td>@Html.DisplayFor(model => model.EntryDate)</td>
+        </tr>
+    </table>
+</fieldset>

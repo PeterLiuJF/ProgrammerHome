@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "首页";
+    Layout = ViewBag.Master;
+}
+<style>
+    #dateBox {
+        height: auto;
+        width: 98%;
+    }
+
+    .body_left {
+        float:left;
+        width: 30%;
+    }
+    .body_center{
+        float:left;
+    }
+    .body_center .center_image{
+        width:500px;
+        height:450px;
+    }
+</style>
+<div class="body_left">
+    <div id="dateBox">
+        @Html.Partial("Calendar",null)
+    </div>
+</div>
+<div class="body_center">
+    <div class="center_image">
+        <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}'>
+            <ul class="am-slides">
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
+
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg">
+
+                </li>
+                <li>
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg">
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="body_right">
+</div>
+<script>
+    $(document).ready(function () {
+        if ($(".am-header-title").html() == "个人空间" && $(".login_show_box").html().indexOf("登录") >= 0) {
+            ShowLogin();
+        }
+    });
+</script>

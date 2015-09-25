@@ -1,0 +1,5 @@
+F:\MyProject\ProgrammerHome\ProgrammerHome\ModelLibrary\bin\Release\ModelLibrary.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\ModelLibrary\bin\Release\ModelLibrary.pdb
+F:\MyProject\ProgrammerHome\ProgrammerHome\ModelLibrary\obj\Release\ModelLibrary.csprojResolveAssemblyReference.cache
+F:\MyProject\ProgrammerHome\ProgrammerHome\ModelLibrary\obj\Release\ModelLibrary.dll
+F:\MyProject\ProgrammerHome\ProgrammerHome\ModelLibrary\obj\Release\ModelLibrary.pdb

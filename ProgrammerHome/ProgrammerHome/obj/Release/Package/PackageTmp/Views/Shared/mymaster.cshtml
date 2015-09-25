@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        #main {
+            width: 90%;
+            margin: 0 auto;
+            background-color: #eaede4;
+        }
+
+        #main_body {
+            overflow: hidden;
+            padding: 10px 10px;
+            height: auto;
+            width: auto;
+            min-width: 850px;
+        }
+    </style>
+    <link href="~/assets/css/amazeui.min.css" rel="stylesheet" />
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/amazeui.min.js"></script>
+    <script src="~/assets/js/amazeui.ie8polyfill.min.js"></script>
+    <script src="~/assets/js/amazeui.widgets.helper.min.js"></script>
+</head>
+<body>
+    <div id="main">
+        @Html.Partial("myheader", null)
+        <div id="main_body">
+            @RenderBody()
+        </div>
+        @Html.Partial("footer", null)
+    </div>
+    <script>
+    function openwin(url) {
+        window.open(url, "newwindow", "height=800, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no")
+    }
+    </script>
+</body>
+</html>

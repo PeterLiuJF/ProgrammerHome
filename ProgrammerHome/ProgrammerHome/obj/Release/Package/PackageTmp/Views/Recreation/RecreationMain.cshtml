@@ -1,0 +1,196 @@
+﻿@model ProgrammerHome.PlayListModel
+@{
+    ViewBag.Title = "RecreationMain";
+    Layout = ViewBag.Master;
+}
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="~/Content/recreation/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" />
+
+<style>
+    #music_box {
+        min-width: 300px;
+        float: left;
+    }
+
+        #music_box .platItem a {
+            cursor: pointer;
+        }
+
+        #music_box dl {
+            position: relative;
+        }
+
+        #music_box button {
+            position: absolute;
+            right: 30px;
+            top: 2px;
+        }
+
+        #music_box .am-accordion-content {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+    #music_play_box {
+        float: left;
+        width: auto;
+        height: auto;
+    }
+
+        #music_play_box .jp-playlist {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+    #music_add_box {
+        margin-top: 10px;
+        margin-left: 10px;
+        float: left;
+        overflow-x: auto;
+    }
+
+        #music_add_box #file-list span {
+            text-align: left;
+            display: block;
+        }
+</style>
+@*播放列表*@
+<div id="music_box">
+    <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{"multiple": true}'>
+        <dl class="am-accordion-item am-active">
+            <dt class="am-accordion-title">
+                音乐播放列表
+            </dt>
+            <dd class="am-accordion-bd am-collapse am-in">
+                <button type="button" class="am-btn am-btn-primary am-radius" onclick="AddPlayItem('1');">播放列表</button>
+                <div class="am-accordion-content">
+                    @foreach (var item in Model.MusicList)
+                    {
+                    <div class="platItem"><a>@item.title</a><span>&nbsp;&nbsp;— @item.artist</span></div>
+                    }
+                </div>
+            </dd>
+        </dl>
+        <dl class="am-accordion-item">
+            <dt class="am-accordion-title">
+                影视播放列表
+            </dt>
+            <dd class="am-accordion-bd am-collapse ">
+                <button type="button" class="am-btn am-btn-primary am-radius" onclick="AddPlayItem('1');">播放列表</button>
+                <div class="am-accordion-content">
+                    @foreach (var item in Model.MovieList)
+                    {
+                    @item.title<br />
+                    }
+                </div>
+            </dd>
+        </dl>
+    </section>
+</div>
+@*播放器*@
+<div id="music_play_box">
+    <div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <div id="jquery_jplayer_N" class="jp-jplayer"></div>
+            <div class="jp-gui">
+                <div class="jp-video-play">
+                    <button class="jp-video-play-icon" role="button" tabindex="0">play</button>
+                </div>
+                <div class="jp-interface">
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
+                    </div>
+                    <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+                    <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+                    <div class="jp-controls-holder">
+                        <div class="jp-controls">
+                            <button class="jp-previous" role="button" tabindex="0" title="上一首">previous</button>
+                            <button class="jp-play" role="button" tabindex="0" title="播放">play</button>
+                            <button class="jp-next" role="button" tabindex="0" title="下一首">next</button>
+                            <button class="jp-stop" role="button" tabindex="0" title="停止">stop</button>
+                        </div>
+                        <div class="jp-volume-controls">
+                            <button class="jp-mute" role="button" tabindex="0" title="静音">mute</button>
+                            <button class="jp-volume-max" role="button" tabindex="0" title="最大音量">max volume</button>
+                            <div class="jp-volume-bar">
+                                <div class="jp-volume-bar-value"></div>
+                            </div>
+                        </div>
+                        <div class="jp-toggles">
+                            <button class="jp-repeat" role="button" tabindex="0" title="重复">repeat</button>
+                            <button class="jp-shuffle" role="button" tabindex="0" title="随机">shuffle</button>
+                            <button class="jp-full-screen" role="button" tabindex="0" title="全屏">full screen</button>
+                        </div>
+                    </div>
+                    <div class="jp-details">
+                        <div class="jp-title" aria-label="title">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <div class="jp-playlist">
+                <ul>
+                    <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                    <li>&nbsp;</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="music_add_box">
+    <div class="am-form-group am-form-file">
+        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+            <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+        </button>
+        <input id="doc-form-file" type="file" multiple>
+    </div>
+    <div id="file-list"></div>
+</div>
+<script src="~/Content/recreation/dist/jplayer/jquery.jplayer.min.js"></script>
+<script src="~/Content/recreation/dist/add-on/jplayer.playlist.min.js"></script>
+<script type="text/javascript">
+    var myPlaylist = null;
+    var fileFormat = '.mp3.mp4.wma.wmv.rm.rmvb.gif';
+    $(document).ready(function () {
+
+        //AddPlayItem('1');
+        $('#doc-form-file').on('change', function () {
+            var fileNames = '';
+            $.each(this.files, function () {
+                var temp = this.name.substring(this.name.lastIndexOf(".") + 1);
+                if (fileFormat.indexOf(temp) < 0) {
+                    fileNames = "只能是.mp3.mp4.wma.wmv.rm.rmvb文件";
+                    return false;
+                }
+                fileNames += '<span class="am-badge">' + this.name + '</span> ';
+            });
+            $('#file-list').html(fileNames);
+        });
+    });
+
+    function AddPlayItem(type) {
+        $.ajax({
+            url: "LoadMusic?type=" + type,
+            type: "POST",
+            success: function (data) {
+                //myPlaylist.setPlaylist(data);
+                var myPlaylist = new jPlayerPlaylist({
+                    jPlayer: "#jquery_jplayer_N",
+                    cssSelectorAncestor: "#jp_container_N"
+                }, data, {
+                    playlistOptions: {
+                        enableRemoveControls: true
+                    },
+                    swfPath: "../../dist/jplayer",
+                    supplied: "webmv, ogv, m4v, oga, mp3",
+                    useStateClassSkin: true,
+                    autoBlur: false,
+                    smoothPlayBar: true,
+                    keyEnabled: true,
+                    audioFullScreen: true
+                });
+            }
+        })
+    }
+</script>

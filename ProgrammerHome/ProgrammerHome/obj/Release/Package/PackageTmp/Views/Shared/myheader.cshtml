@@ -1,0 +1,102 @@
+﻿
+<style>
+    #main_header {
+        width: 100%;
+        height: auto;
+    }
+
+        #main_header .login_show_box {
+            margin: 20px auto;
+            text-align: center;
+        }
+</style>
+<div id="main_header">
+    <header data-am-widget="header" class="am-header am-header-default" data-am-scrollspy-nav="{offsetTop: 45}" data-am-sticky>
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:void(0);" onclick="LoadPage('../Home/Index')">
+                <span class="am-header-nav-title">首页</span>
+                <i class="am-header-icon am-icon-home"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">个人空间</h1>
+    </header>
+    <nav data-am-widget="menu" class="am-menu am-menu-offcanvas1" data-am-menu-offcanvas>
+        <a href="javascript: void(0)" class="am-menu-toggle">
+            <i class="am-menu-toggle-icon am-icon-bars"></i>
+        </a>
+        <div class="am-offcanvas">
+            <div class="am-offcanvas-bar">
+                <ul class="am-menu-nav am-avg-sm-1">
+                    <li class="am-parent">
+                        <a href="##" class="">个人空间</a>
+                        <ul class="am-menu-sub am-collapse  am-avg-sm-2 ">
+                            <li class="">
+                                <a href="javascript:void(0);" onclick="LoadPage('../Person/ShowInfo')">我的信息</a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);" onclick="LoadPage('../Person/updateuserinfo')">修改我的信息</a>
+                            </li>
+                            <li class="am-menu-nav-channel">
+                                <a href="##" class="" title="公司">进入栏目 &raquo;</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" onclick="LoadPage('../Library/Library')">图书馆</a>
+                    </li>
+                    <li class="am-parent">
+                        <a href="##" class="">娱乐</a>
+                        <ul class="am-menu-sub am-collapse  am-avg-sm-2 ">
+                            <li class="">
+                                <a href="javascript:void(0);" onclick="LoadPage('../Recreation/RecreationMain')">影视音乐</a>
+                            </li>
+                            <li class="am-menu-nav-channel">
+                                <a href="javascript:void(0);" onclick="LoadPage('../Recreation/GameMain')" title="游戏">游戏 &raquo;</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="##" class="">联系</a>
+                    </li>
+                </ul>
+                <div class="login_show_box">
+                    @{if (Request.Cookies["PH_User"] == null)
+                    {
+                        <a href='javascript:ShowLogin();'>登录</a>
+                        <span style='margin:0px 10px;'>·</span>
+                        <a href="javascript:void(0);" onclick="openwin('../Home/UserRegistered?MySpace=1')">注册</a>
+                    }
+                    else
+                    {
+                        <a href='../Person/ShowInfo'>@Request.Cookies["PH_User"]["User_Account"]</a>
+                        <span style='margin:0px 10px;'>·</span>
+                        <a href='javascript:void(0);' onclick='Logon()'>注销</a>
+                    }
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script>
+        $(function () {
+
+        });
+        function Logon() {
+            $.ajax({
+                url: '../Home/Logon',
+                type: 'POST',
+                success: function (data) {
+                    LoadPage("../Home/Index");
+                }
+            })
+        }
+
+        function LoadPage(url) {
+            if ($(".login_show_box").html().indexOf("登录") >= 0) {
+                ShowLogin();
+            } else
+                openwin(url + "?MySpace=1");
+        }
+    </script>
+</div>
+@Html.Partial("LoginPage", null)
