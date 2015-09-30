@@ -10,6 +10,7 @@ namespace ProgrammerHome.Service
 {
     public class RecreationService
     {
+        #region 影视音乐
         public List<PlayDetailModel> GetMusicItems(int type, int userID = 0)
         {
             string sql = string.Format("select * from PlayList where type={0}", type);
@@ -71,6 +72,18 @@ namespace ProgrammerHome.Service
             }
             return model;
         }
+
+        public bool AddMusic(List<PlayDetailModel> models, int userID)
+        {
+            string temp = "insert into PlayList(title,artist,fileinfo,type,userid) values('{0}','{1}','{2}',{3},{4});";
+            string sql = "";
+            foreach (var item in models)
+            {
+                sql += string.Format(temp, item.title, item.artist, item.mp3, 1, userID);
+            }
+            return SqlAccess.ExecuteTran(sql) > 0;
+        }
+        #endregion
 
         public List<GameModel> GetGameItems(int userID = 0)
         {

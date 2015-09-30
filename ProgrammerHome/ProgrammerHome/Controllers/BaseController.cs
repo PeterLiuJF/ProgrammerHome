@@ -10,6 +10,7 @@ namespace ProgrammerHome.Controllers
 {
     public class BaseController : Controller
     {
+        private const string OPENNEWWINDOWS = "<script>window.open('{0}', 'newwindow', 'height=800, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no')</script>";
         private string _loginName = "";
         private int _loginID;
         public string LoginName
@@ -39,6 +40,13 @@ namespace ProgrammerHome.Controllers
                 _loginID = Normal.ParseInt(Request.Cookies["PH_User"].Values["User_Id"]);
                 _loginName = Request.Cookies["PH_User"].Values["User_Account"];
             }
+        }
+
+        public string ReloadPage(string url)
+        {
+            if (LoginID != 0)
+                url += "?MySpace=1";
+            return string.Format(OPENNEWWINDOWS, url);
         }
     }
 }

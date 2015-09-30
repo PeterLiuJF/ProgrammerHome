@@ -83,7 +83,8 @@ namespace ProgrammerHome.Controllers
                 });
             }
             personService.AddImages(list);
-            return Content("<script>window.open('../Person/ImageSpace?MySpace=1', 'newwindow', 'height=800, width=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no')</script>");
+
+            return Content(ReloadPage("../Person/ImageSpace"));
         }
         #endregion
     }
